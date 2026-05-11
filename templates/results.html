@@ -39,17 +39,38 @@
         <div class="container">
             <h1>Your Results</h1>
 
-            <!--score display-->
+         <!--score display-->
+            {%if score>4%}
             <div class="card">
                 <h2>Your Score</h2>
-                <div class="score-display">
+                <div class="score-display1">
                     {{ score }} / {{ total_questions }}
                 </div>
                 <p style="text-align: center; font-size: 1.2rem;">
                     {{ percentage }}%
                 </p>
             </div>
-
+            {%elif score>2%}
+            <div class="card">
+                <h2>Your Score</h2>
+                <div class="score-display2">
+                    {{ score }} / {{ total_questions }}
+                </div>
+                <p style="text-align: center; font-size: 1.2rem;">
+                    {{ percentage }}%
+                </p>
+            </div>
+            {%else%}
+            <div class="card">
+                <h2>Your Score</h2>
+                <div class="score-display3">
+                    {{ score }} / {{ total_questions }}
+                </div>
+                <p style="text-align: center; font-size: 1.2rem;">
+                    {{ percentage }}%
+                </p>
+            </div>
+            {%endif%}
             
             <div class="card">
                 <h2>Feedback</h2>
