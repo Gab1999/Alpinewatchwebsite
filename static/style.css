@@ -130,9 +130,23 @@ footer {
 }
 
 /* Quiz results */
-.score-display {
+.score-display1 {
     font-size: 3rem;
     color: #27ae61;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.score-display2 {
+    font-size: 3rem;
+    color: #e8ab01;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.score-display3 {
+    font-size: 3rem;
+    color: #dc290d;
     text-align: center;
     margin: 2rem 0;
 }
