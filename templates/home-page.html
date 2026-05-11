@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine Watch - Home</title>
+    <!-- url_for for reproducible static file linking -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <nav>
+        <div class="container">
+            <a href="/">Home</a>
+            <a href="/quiz">Quiz</a>
+            <a href="/data">Data</a>
+        </div>
+    </nav>
+
+    
+    <main>
+        <div class="container">
+            <h1>Welcome to AlpineWatch</h1>
+            <p>Learn about the impact of climate change on Alpine glaciers in Switzerland, Italy, and France.</p>
+
+            <div class="card">
+                <h2>What are glaciers?</h2>
+                <p>Glaciers are large masses of ice that form over thousands of years from accumulated snow. They are found in mountainous regions and polar areas. Specific climate condiitons are necessary for galciers to exist for as long as they have with most glaciers existing longer than most civilisations.</p>
+            </div>
+
+            <div class="card">
+                <h2>Why should we care?</h2>
+                <p>Glaciers are mellennia old and are only now beggening to crumble and melt at an alarming rate due to climate change. This affects water supplies, ecosystems and surrounding communities but also serves as a drastic reminder that climate change is no hoax or conspiracy. Glaciers have also been traversed by us humans for a long time however it is becoming increasingly dangerous due to new crevases forming yearly.</p>
+            </div>
+
+            <div class="card">
+                <h2>Test Your Knowledge</h2>
+                <p>Think you know about glaciers and climate change? Take our quiz to test your knowledge!</p>
+                <button onclick="window.location.href='/quiz'">Start Quiz</button>
+            </div>
+        </div>
+    </main>
+
+    
+    <footer>
+        <p>&copy; 2026 AlpineWatch. </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineWatch - Data</title>
+    <!--Using url_for for reproducible static file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/">Home</a>
+            <a href="/quiz">Quiz</a>
+            <a href="/data">Data</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1>Glacier & Climate Data</h1>
+            <p>Real data from the European Environment Agency showing glacier statistics and greenhouse gas emissions.</p>
+
+            <!-- Glacier Statistics Section -->
+            <div class="card">
+                <h2>Glacier Statistics by Country</h2>
+                <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #34495e; color: white;">
+                            <th>Country</th>
+                            <th>Number of Glaciers</th>
+                            <th>Average Mass Balance (mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stat in glacier_stats %}
+                        <tr>
+                            <td>{{ stat[0] }}</td>
+                            <td>{{ stat[1] }}</td>
+                            <td>{{ "%.2f"|format(stat[2]) if stat[2] else "N/A" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- GHG Emissions Section -->
+            <div class="card">
+                <h2>Greenhouse Gas Emissions (Index: 1990 = 100)</h2>
+                <p>Lower values indicate reduced emissions compared to 1990 baseline.</p>
+                <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #34495e; color: white;">
+                            <th>Country</th>
+                            <th>Year</th>
+                            <th>Emissions Index</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for emission in ghg_data %}
+                        <tr>
+                            <td>{{ emission[0] }}</td>
+                            <td>{{ emission[1] }}</td>
+                            <td>{{ "%.2f"|format(emission[2]) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Information Section -->
+            <div class="card">
+                <h2>About This Data</h2>
+                <p><strong>Source:</strong> European Environment Agency (EEA)</p>
+                <p><strong>Glacier Data:</strong> Cumulative specific net mass balance measurements from 1945-2014</p>
+                <p><strong>GHG Emissions:</strong> Total greenhouse gas emissions (without LULUCF) indexed to 1990 baseline</p>
+                <p><strong>Countries:</strong> Switzerland, Italy, France</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 AlpineWatch.</p>
+    </footer>
+</body>
+</html>

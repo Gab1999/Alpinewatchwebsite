@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineWatch - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <nav>
+    <div class="container">
+        <a href="/">Home</a>
+        <a href="/quiz">Quiz</a>
+        <a href="/results">Results</a> 
+        <a href="/data">Data</a>
+    </div>
+    </nav>
+
+    
+    <main>
+        <div class="container">
+            <h1>Your Results</h1>
+
+            <!--score display-->
+            <div class="card">
+                <h2>Your Score</h2>
+                <div class="score-display">
+                    {{ score }} / {{ total_questions }}
+                </div>
+                <p style="text-align: center; font-size: 1.2rem;">
+                    {{ percentage }}%
+                </p>
+            </div>
+
+            
+            <div class="card">
+                <h2>Feedback</h2>
+                <p>{{ message }}</p>
+            </div>
+
+            <!--more detail results-->
+            <div class="card">
+                <h2>Detailed Review</h2>
+                {% for result in results %}
+                <div class="result-item {% if result.correct %}correct{% else %}incorrect{% endif %}">
+                    <h3>Question {{ loop.index }}: {{ result.question }}</h3>
+                    <p><strong>Your answer:</strong> {{ result.user_answer }}</p>
+                    <p><strong>Correct answer:</strong> {{ result.correct_answer }}</p>
+                    <p><strong>Status:</strong> {% if result.correct %} Correct{% else %} Incorrect{% endif %}</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!--buttons-->
+            <div style="text-align: center; margin: 2rem 0;">
+                <button onclick="window.location.href='/quiz'">Retake Quiz</button>
+                <button onclick="window.location.href='/'" style="background-color: #95a5a6;">Back to Home</button>
+            </div>
+        </div>
+    </main>
+
+    
+    <footer>
+        <p>&copy; 2026 AlpineWatch.</p>
+    </footer>
+</body>
+</html>
