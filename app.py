@@ -153,10 +153,28 @@ def data():
 
     ghg_data = cursor.fetchall()
     
+       #Graph data
+    cursor.execute('''
+    SELECT 
+        g.glacier_name, c.country_name, gd.year, gd.net_mass_balance
+    FROM glacier_data gd
+    JOIN glaciers g ON gd.glacier_id = g.glacier_id
+    JOIN countries c ON g.country_id = c.country_id
+    WHERE g.glacier_name IN (
+        'Saint Sorlin',
+        'Sarennes',
+        'Gries',
+        'Careser'
+    )
+    ORDER BY g.glacier_name, gd.year
+''')
+
+    glacier_timeseries = cursor.fetchall()
+    
     conn.close()
     
-    return render_template('data.html', glacier_stats=glacier_stats, ghg_data=ghg_data)
-
+    return render_template('data.html', glacier_stats=glacier_stats, ghg_data=ghg_data, glacier_timeseries=glacier_timeseries)
+    
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
 
