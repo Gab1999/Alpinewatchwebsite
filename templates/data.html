@@ -67,6 +67,50 @@
                     </tbody>
                 </table>
             </div>
+            
+             <!-- GRAPHH-->
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <div class="card">
+                <h2>Glacier Mass Balance Over Time</h2>
+                <div id="glacier-chart" style="height: 400px;"></div>
+            </div>
+            <script>
+    const data = {{ glacier_timeseries | tojson }};
+
+    // Separate glaciers
+    const glaciers = {};
+
+    data.forEach(row => {
+        const name = row[0] + " (" + row[1] + ")"; // This add the country name in brackets next to the glacier
+        const year = row[2];
+        const balance = row[3];
+
+        if (!glaciers[name]) {
+            glaciers[name] = { years: [], values: [] };
+        }
+
+        glaciers[name].years.push(year);
+        glaciers[name].values.push(balance);
+    });
+
+    // 1 trace per glacier
+    const traces = Object.keys(glaciers).map(name => {
+        return {
+            x: glaciers[name].years,
+            y: glaciers[name].values,
+            mode: 'lines+markers',
+            name: name
+        };
+    });
+
+    const layout = {
+        title: 'Glacier Net Mass Balance Over Time',
+        xaxis: { title: 'Year' },
+        yaxis: { title: 'Net Mass Balance' }
+    };
+
+    Plotly.newPlot('glacier-chart', traces, layout);
+</script>
 
             <!-- GHG Emissions Section -->
             <div class="card">
