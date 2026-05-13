@@ -106,7 +106,15 @@
     const layout = {
         title: 'Glacier Net Mass Balance Over Time',
         xaxis: { title: 'Year' },
-        yaxis: { title: 'Net Mass Balance' }
+        yaxis: { title: 'Net Mass Balance' },
+        legend: {  // legend lines are for the grpah to not appear messed up in the mobile version of the website
+            orientation: 'h',
+            x: 0.5,
+            y: -0.3, 
+            xanchor: 'center',
+            yanchor: 'top'
+
+        } 
     };
 
     Plotly.newPlot('glacier-chart', traces, layout);
