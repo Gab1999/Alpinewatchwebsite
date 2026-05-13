@@ -103,6 +103,11 @@
         };
     });
 
+    const config = {
+        displayModeBar: false,
+        responsive: true
+    };
+
     const layout = {
         title: 'Glacier Net Mass Balance Over Time',
         xaxis: { title: 'Year' },
@@ -117,7 +122,7 @@
         } 
     };
 
-    Plotly.newPlot('glacier-chart', traces, layout);
+    Plotly.newPlot('glacier-chart', traces, layout, config);
 </script>
 
             <!-- GHG Emissions Section -->
